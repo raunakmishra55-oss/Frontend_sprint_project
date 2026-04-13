@@ -1,0 +1,231 @@
+/* ========= Roast Display ========= */
+
+.roast-display {
+  background: var(--bg-card);
+  border: 1px solid var(--border-fire);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-fire);
+  position: relative;
+}
+
+/* Top fire accent line */
+.roast-display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--fire-gradient);
+}
+
+/* Header */
+.roast-display__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255, 46, 46, 0.03);
+}
+
+.roast-display__avatar {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--fire-red);
+  box-shadow: 0 0 15px rgba(255, 46, 46, 0.2);
+}
+
+.roast-display__avatar-emoji {
+  font-size: 1.6rem;
+}
+
+.roast-display__avatar-fire {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 0.9rem;
+  animation: flameDance 1.5s ease-in-out infinite;
+}
+
+.roast-display__meta {
+  flex: 1;
+}
+
+.roast-display__chef-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.roast-display__mood {
+  font-size: 0.75rem;
+  color: var(--fire-red);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.roast-display__rating {
+  text-align: center;
+  background: rgba(255, 46, 46, 0.1);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 46, 46, 0.2);
+}
+
+.roast-display__rating-label {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.roast-display__rating-value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--fire-red);
+  letter-spacing: 2px;
+}
+
+/* Content / The Roast */
+.roast-display__content {
+  position: relative;
+  padding: var(--space-2xl) var(--space-xl);
+  padding-left: calc(var(--space-xl) + 40px);
+}
+
+.roast-display__quote-mark {
+  position: absolute;
+  top: var(--space-lg);
+  left: var(--space-lg);
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--fire-red);
+  opacity: 0.3;
+  user-select: none;
+}
+
+.roast-display__quote-mark--end {
+  position: relative;
+  top: auto;
+  left: auto;
+  display: inline;
+  font-size: 2rem;
+  margin-left: var(--space-xs);
+  vertical-align: bottom;
+}
+
+.roast-display__text {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+/* Bleep Buttons */
+.bleep-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bleep-bg);
+  border: 2px solid var(--fire-red);
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+  margin: 0 3px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+}
+
+.bleep-btn__text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--fire-red);
+  white-space: nowrap;
+}
+
+.bleep-btn:hover {
+  background: rgba(255, 46, 46, 0.15);
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(255, 46, 46, 0.3);
+}
+
+.bleep-btn--active {
+  animation: bleepFlash 0.4s ease-out;
+}
+
+.bleep-btn--active .bleep-btn__text {
+  color: white;
+}
+
+/* Footer */
+.roast-display__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-xl);
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.roast-display__bleep-count {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.roast-display__disclaimer {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .roast-display__content {
+    padding: var(--space-xl);
+    padding-left: var(--space-xl);
+  }
+
+  .roast-display__quote-mark {
+    position: relative;
+    top: auto;
+    left: auto;
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: calc(-1 * var(--space-md));
+  }
+
+  .roast-display__header {
+    flex-wrap: wrap;
+  }
+
+  .roast-display__rating {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    justify-content: center;
+  }
+  
+  .roast-display__rating-label {
+    margin-bottom: 0;
+  }
+}

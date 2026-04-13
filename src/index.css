@@ -1,0 +1,257 @@
+/* ========================================
+   GORDON RAMSAY'S KITCHEN TRAUMA
+   Design System & Global Styles
+   ======================================== */
+
+/* CSS Custom Properties */
+:root {
+  /* Core palette — Hell's Kitchen dark theme */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #222222;
+  --bg-overlay: rgba(0, 0, 0, 0.85);
+
+  /* Fire gradient palette */
+  --fire-red: #ff2e2e;
+  --fire-orange: #ff6b35;
+  --fire-yellow: #ffc107;
+  --fire-ember: #ff4444;
+  --fire-gradient: linear-gradient(135deg, #ff2e2e, #ff6b35, #ffc107);
+  --fire-gradient-hover: linear-gradient(135deg, #ff4444, #ff8855, #ffd54f);
+
+  /* Accent colors */
+  --accent-gold: #d4a030;
+  --accent-steel: #6b7b8d;
+  --accent-smoke: #2a2a2a;
+  
+  /* Text colors */
+  --text-primary: #f0f0f0;
+  --text-secondary: #999999;
+  --text-muted: #555555;
+  --text-fire: #ff6b35;
+  --text-danger: #ff2e2e;
+
+  /* Bleep button */
+  --bleep-bg: #1a1a1a;
+  --bleep-hover: #ff2e2e;
+  --bleep-text: #ff6b35;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-fire: rgba(255, 107, 53, 0.3);
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-accent: 'Permanent Marker', cursive;
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-fire: 0 0 30px rgba(255, 46, 46, 0.15), 0 0 60px rgba(255, 107, 53, 0.08);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px rgba(255, 107, 53, 0.3);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ========= Reset & Base ========= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Animated fire background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 0%, rgba(255, 46, 46, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 0%, rgba(255, 107, 53, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 193, 7, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: var(--text-fire);
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+/* ========= Scrollbar ========= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-steel);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-fire);
+}
+
+/* ========= Animations ========= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fireGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 46, 46, 0.5), 0 0 20px rgba(255, 107, 53, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 46, 46, 0.8), 0 0 40px rgba(255, 107, 53, 0.5), 0 0 60px rgba(255, 193, 7, 0.2);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-8px) rotate(-1deg); }
+  20% { transform: translateX(8px) rotate(1deg); }
+  30% { transform: translateX(-6px) rotate(-0.5deg); }
+  40% { transform: translateX(6px) rotate(0.5deg); }
+  50% { transform: translateX(-4px); }
+  60% { transform: translateX(4px); }
+  70% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  90% { transform: translateX(-1px); }
+}
+
+@keyframes pulseRed {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 46, 46, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(255, 46, 46, 0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes flameDance {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  25% { transform: scaleY(1.1) scaleX(0.95); }
+  50% { transform: scaleY(0.95) scaleX(1.05); }
+  75% { transform: scaleY(1.05) scaleX(0.98); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bleepFlash {
+  0% { background: var(--fire-red); color: white; transform: scale(1); }
+  50% { background: var(--fire-yellow); color: black; transform: scale(1.15); }
+  100% { background: var(--fire-red); color: white; transform: scale(1); }
+}
+
+/* ========= Utility Classes ========= */
+.fire-text {
+  background: var(--fire-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow {
+  animation: fireGlow 2s ease-in-out infinite;
+}
+
+.animate-in {
+  animation: fadeInUp 0.6s var(--transition-slow) both;
+}
+
+.shake {
+  animation: shake 0.6s ease-in-out;
+}
