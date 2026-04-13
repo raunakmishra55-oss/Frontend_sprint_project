@@ -1,3 +1,5 @@
+Live link: https://frontend-sprint-project.vercel.app/
+
 # 🔥 Gordon Ramsay's Kitchen Trauma
 
 > Get a random recipe. Watch it get absolutely **DEMOLISHED** by an AI Gordon Ramsay. No recipe is safe. No feelings are spared.
